@@ -7,7 +7,12 @@ public class TicTacToeGame {
 		createBoard();
 		System.out.println("Board is created");
 		chooseLetter();
+		System.out.println("The board is : ");
+		showBoard();
 	}
+	/**
+	 * @CreatingBoard
+	 */
 	public static void createBoard() {
 		for(int i=0;i<board.length;i++) {
 			for(int j =0;j<board.length;j++) {
@@ -15,6 +20,9 @@ public class TicTacToeGame {
 			}
 		}
 	}
+	/**
+	 * @ChoosingLetter
+	 */
 	public static void chooseLetter() {
 		Scanner scanner = new Scanner(System.in);
 		System.out.println("Choose a letter from X, O to play the game");
@@ -25,6 +33,20 @@ public class TicTacToeGame {
 			case 'O' : System.out.println("Player has choosen O to play the game");
 			break;
 			default : System.out.println("Invalid, please enter a valid character");
+			break;
+		}
+	}
+	/**
+	 * @Showboard
+	 */
+	public static void showBoard() {
+		int k =1;
+		for(int i=0;i<board.length;i++) {
+			for(int j=0;j<board.length;j++) {
+				board[i][j]=k++;
+				System.out.print("| " +board[i][j]+" |");
+			}
+			System.out.println();
 		}
 	}
 }
