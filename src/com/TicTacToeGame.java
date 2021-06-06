@@ -31,6 +31,7 @@ public class TicTacToeGame {
 
 	public static void chooseLetter() {
 		Scanner scanner = new Scanner(System.in);
+		tossCheck();
 		char letter = scanner.next().charAt(0);
 		switch (letter) {
 		case 'X':
@@ -47,7 +48,7 @@ public class TicTacToeGame {
 	}
 
 	/**
-	 * @ Show the board so that user can choose a cell
+	 * @ Show the board so that user ca
 	 */
 	public static void showBoard() {
 		int k = 1;
@@ -68,18 +69,30 @@ public class TicTacToeGame {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < 2; i++) {
 			choice = scanner.next().charAt(0);
-			checkingForFreeSpace();
-			replace(board, choice, letter);
-			showBoard();
+			if (choice > 'o' && choice < '9') {
+				checkingForFreeSpace();
+				replace(board, choice, letter);
+				showBoard();
+			} else {
+				playerChoice(letter);
+			}
 			choice = scanner.next().charAt(0);
-			checkingForFreeSpace();
-			replace(board, choice, letter);
-			showBoard();
+			if (choice > 'o' && choice < '9') {
+				checkingForFreeSpace();
+				replace(board, choice, letter);
+				showBoard();
+			} else {
+				playerChoice(letter);
+			}
+			choice = scanner.next().charAt(0);
+			if (choice > 'o' && choice < '9') {
+				checkingForFreeSpace();
+				replace(board, choice, letter);
+				showBoard();
+			} else {
+				playerChoice(letter);
+			}
 		}
-		choice = scanner.next().charAt(0);
-		checkingForFreeSpace();
-		replace(board, choice, letter);
-		showBoard();
 	}
 
 	/**
@@ -111,6 +124,16 @@ public class TicTacToeGame {
 					playerChoice(letter);
 				}
 			}
+		}
+	}
+
+	public static void tossCheck() {
+		Random random = new Random();
+		int randomCheck = random.nextInt(2);
+		if (randomCheck == 1) {
+			System.out.println("Player won the toss");
+		} else {
+			System.out.println("Computer won the toss");
 		}
 	}
 }
