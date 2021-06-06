@@ -69,30 +69,18 @@ public class TicTacToeGame {
 		Scanner scanner = new Scanner(System.in);
 		for (int i = 0; i < 2; i++) {
 			choice = scanner.next().charAt(0);
-			if (choice > 'o' && choice < '9') {
-				checkingForFreeSpace();
-				replace(board, choice, letter);
-				showBoard();
-			} else {
-				playerChoice(letter);
-			}
+			checkingForFreeSpace();
+			replace(board, choice, letter);
+			showBoard();
 			choice = scanner.next().charAt(0);
-			if (choice > 'o' && choice < '9') {
-				checkingForFreeSpace();
-				replace(board, choice, letter);
-				showBoard();
-			} else {
-				playerChoice(letter);
-			}
-			choice = scanner.next().charAt(0);
-			if (choice > 'o' && choice < '9') {
-				checkingForFreeSpace();
-				replace(board, choice, letter);
-				showBoard();
-			} else {
-				playerChoice(letter);
-			}
+			checkingForFreeSpace();
+			replace(board, choice, letter);
+			showBoard();
 		}
+		choice = scanner.next().charAt(0);
+		checkingForFreeSpace();
+		replace(board, choice, letter);
+		showBoard();
 	}
 
 	/**
@@ -127,6 +115,9 @@ public class TicTacToeGame {
 		}
 	}
 
+	/**
+	 * @ checking toss to know whose gonna start the game
+	 */
 	public static void tossCheck() {
 		Random random = new Random();
 		int randomCheck = random.nextInt(2);
@@ -135,5 +126,53 @@ public class TicTacToeGame {
 		} else {
 			System.out.println("Computer won the toss");
 		}
+	}
+	/**
+	 * @return
+	 * Checking if there is a winner or not
+	 */
+	public static boolean checkingForWinner() {
+		return (checkForRow() || checkForColumn() || checkForDiagonal());
+	}
+
+	/**
+	 * @return
+	 *  checking for row equality
+	 */
+	public static boolean checkForRow() {
+		for (int i = 0; i < board.length; i++) {
+			if (check(board[i][0], board[i][1], board[i][2]) == true) {
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * @return
+	 * checking for column equality
+	 */
+	public static boolean checkForColumn() {
+		for (int i = 0; i < board.length; i++) {
+			if (check(board[0][i], board[1][i], board[2][i]) == true) {
+				return true;
+			}
+		}
+		return false;
+	}
+	/**
+	 * @return
+	 * checking for diagonal equality
+	 */
+	public static boolean checkForDiagonal() {
+		for (int i = 0; i < board.length; i++) {
+			if (check(board[0][0], board[1][1], board[2][2]) == true || check(board[0][2], board[1][1], board[2][0]) == true)  {
+				return true;
+			}
+		}
+		return false;
+	}
+	public static boolean check(char c1, char c2, char c3) {
+		return ((c1 == c2) && (c2 == c3));
+		
 	}
 }
