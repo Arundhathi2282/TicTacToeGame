@@ -72,15 +72,18 @@ public class TicTacToeGame {
 			checkingForFreeSpace();
 			replace(board, choice, letter);
 			showBoard();
+			checkingForWinner();
 			choice = scanner.next().charAt(0);
 			checkingForFreeSpace();
 			replace(board, choice, letter);
 			showBoard();
+			checkingForWinner();
 		}
 		choice = scanner.next().charAt(0);
 		checkingForFreeSpace();
 		replace(board, choice, letter);
 		showBoard();
+		checkingForWinner();
 	}
 
 	/**
