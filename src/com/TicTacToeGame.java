@@ -11,6 +11,8 @@ public class TicTacToeGame {
 		System.out.println(letter);
 		chooseLetter();
 		playerChoice(letter);
+		checkingForWinner();
+		checkCpuWin();
 	}
 
 	/**
@@ -121,26 +123,42 @@ public class TicTacToeGame {
 	/**
 	 * @ checking toss to know whose gonna start the game
 	 */
-	public static void tossCheck() {
+	public static String tossCheck() {
 		Random random = new Random();
+		String user;
 		int randomCheck = random.nextInt(2);
 		if (randomCheck == 1) {
 			System.out.println("Player won the toss");
+			user = "Player";
 		} else {
 			System.out.println("Computer won the toss");
+		 user = "CPU";
 		}
+		return user;
 	}
+
 	/**
 	 * @return
-	 * Checking if there is a winner or not
+	 * If computer gets its turn, it first check for the win then make a move
+	 */
+	public static boolean checkCpuWin() {
+		String name = tossCheck();
+		if(name.equals("CPU")) {
+			checkingForWinner();
+			playerChoice(letter);
+		}
+		return false;
+	}
+
+	/**
+	 * @return Checking if there is a winner or not
 	 */
 	public static boolean checkingForWinner() {
 		return (checkForRow() || checkForColumn() || checkForDiagonal());
 	}
 
 	/**
-	 * @return
-	 *  checking for row equality
+	 * @return checking for row equality
 	 */
 	public static boolean checkForRow() {
 		for (int i = 0; i < board.length; i++) {
@@ -150,9 +168,9 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+
 	/**
-	 * @return
-	 * checking for column equality
+	 * @return checking for column equality
 	 */
 	public static boolean checkForColumn() {
 		for (int i = 0; i < board.length; i++) {
@@ -162,20 +180,22 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+
 	/**
-	 * @return
-	 * checking for diagonal equality
+	 * @return checking for diagonal equality
 	 */
 	public static boolean checkForDiagonal() {
 		for (int i = 0; i < board.length; i++) {
-			if (check(board[0][0], board[1][1], board[2][2]) == true || check(board[0][2], board[1][1], board[2][0]) == true)  {
+			if (check(board[0][0], board[1][1], board[2][2]) == true
+					|| check(board[0][2], board[1][1], board[2][0]) == true) {
 				return true;
 			}
 		}
 		return false;
 	}
+
 	public static boolean check(char c1, char c2, char c3) {
 		return ((c1 == c2) && (c2 == c3));
-		
+
 	}
 }
