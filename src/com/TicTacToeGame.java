@@ -12,7 +12,7 @@ public class TicTacToeGame {
 		chooseLetter();
 		playerChoice(letter);
 		checkingForWinner();
-		checkCpuWin();
+		// checkCpuWin();
 	}
 
 	/**
@@ -37,26 +37,27 @@ public class TicTacToeGame {
 		char letter = scanner.next().charAt(0);
 		switch (letter) {
 		case 'X':
+			System.out.println("You have choosen X,continue to play");
 			showBoard();
 			playerChoice(letter);
 			break;
 		case 'O':
+			System.out.println("You have choosen O,continue to play");
 			showBoard();
 			playerChoice(letter);
 			break;
 		default:
+			System.out.println("Invalid, coose again");
 			chooseLetter();
 		}
 	}
 
 	/**
-	 * @ Show the board so that user ca
+	 * @ Show the board so that user can choose a valid cell
 	 */
 	public static void showBoard() {
-		int k = 1;
 		for (int i = 0; i < board.length; i++) {
 			for (int j = 0; j < board.length; j++) {
-				board[i][j] = Character.forDigit(k++, 10);
 				System.out.print("| " + board[i][j] + " |");
 			}
 			System.out.println();
@@ -67,40 +68,121 @@ public class TicTacToeGame {
 	 * @ Allowing user to make a desired move
 	 */
 	public static void playerChoice(char letter) {
-		char choice;
 		Scanner scanner = new Scanner(System.in);
-		for (int i = 0; i < 2; i++) {
-			choice = scanner.next().charAt(0);
-			checkingForFreeSpace();
-			replace(board, choice, letter);
-			showBoard();
-			checkingForWinner();
-			choice = scanner.next().charAt(0);
-			checkingForFreeSpace();
-			replace(board, choice, letter);
-			showBoard();
-			checkingForWinner();
+		for (int i = 0; i < 3; i++) {
+			int playerChoice = scanner.nextInt();
+			switch (playerChoice) {
+			case 1:
+				checkingForFreeSpace();
+				board[0][0] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 2:
+				checkingForFreeSpace();
+				board[0][1] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 3:
+				checkingForFreeSpace();
+				board[0][2] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 4:
+				checkingForFreeSpace();
+				board[1][0] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 5:
+				checkingForFreeSpace();
+				board[1][1] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 6:
+				checkingForFreeSpace();
+				board[1][2] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 7:
+				checkingForFreeSpace();
+				board[2][0] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 8:
+				checkingForFreeSpace();
+				board[2][1] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			case 9:
+				checkingForFreeSpace();
+				board[2][2] = letter;
+				showBoard();
+				computerChoice();
+				break;
+			}
 		}
-		choice = scanner.next().charAt(0);
-		checkingForFreeSpace();
-		replace(board, choice, letter);
-		showBoard();
-		checkingForWinner();
 	}
 
-	/**
-	 * 
-	 * @param board
-	 * @param find
-	 * @param replace
-	 */
-	public static void replace(char board[][], char find, char replace) {
-		for (int i = 0; i < board.length; i++) {
-			for (int j = 0; j < board.length; j++) {
-				if (board[i][j] == find) {
-					board[i][j] = replace;
-					return;
-				}
+	public static void computerChoice() {
+		int computerChoice;
+		Random random = new Random();
+		if (letter == 'X') {
+			computerChoice = 1 + random.nextInt(9);
+			System.out.println(computerChoice);
+			switch (computerChoice) {
+			case 1:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 2:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 3:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 4:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 5:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 6:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 7:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 8:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+			case 9:
+				checkingForFreeSpace();
+				board[0][0] = 'O';
+				showBoard();
+				break;
+
 			}
 		}
 	}
@@ -121,7 +203,7 @@ public class TicTacToeGame {
 	}
 
 	/**
-	 * @ checking toss to know whose gonna start the game
+	 * @ checking toss to know who is going to start the game first
 	 */
 	public static String tossCheck() {
 		Random random = new Random();
@@ -132,18 +214,18 @@ public class TicTacToeGame {
 			user = "Player";
 		} else {
 			System.out.println("Computer won the toss");
-		 user = "CPU";
+			user = "CPU";
 		}
 		return user;
 	}
 
 	/**
-	 * @return
-	 * If computer gets its turn, it first check for the win then make a move
+	 * @return If computer gets its turn, it first check for the win then make a
+	 *         move
 	 */
 	public static boolean checkCpuWin() {
 		String name = tossCheck();
-		if(name.equals("CPU")) {
+		if (name.equals("CPU")) {
 			checkingForWinner();
 			playerChoice(letter);
 		}
