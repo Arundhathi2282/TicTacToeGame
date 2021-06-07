@@ -133,6 +133,9 @@ public class TicTacToeGame {
 		}
 	}
 
+	/**
+	 * @ checking computer choice and make a move
+	 */
 	public static void computerChoice() {
 		int computerChoice;
 		Random random = new Random();
@@ -222,6 +225,10 @@ public class TicTacToeGame {
 		}
 		return user;
 	}
+	/**
+	 * @return
+	 * In this method we are checking for free corners if available then move
+	 */
 	public static boolean cornerCheck() {
 		boolean result = checkingForWinner();
 		if(result == false) {
@@ -237,6 +244,9 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+	/**
+	 * If any of corners are not available then move to any one of sides
+	 */
 	public static void subsequentChoice() {
 		boolean check = cornerCheck();
 		if(check == false) {
@@ -262,6 +272,9 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+	/**
+	 * Checking if board is full or not
+	 */
 	public static void isBoardFull() {
 		for(int i=0;i<board.length;i++) {
 			for(int j=0;j<board.length;j++) {
@@ -317,6 +330,12 @@ public class TicTacToeGame {
 		return false;
 	}
 
+	/**
+	 * @param c1
+	 * @param c2
+	 * @param c3
+	 * @return
+	 */
 	public static boolean check(char c1, char c2, char c3) {
 		return ((c1 == c2) && (c2 == c3));
 
