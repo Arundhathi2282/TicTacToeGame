@@ -14,6 +14,7 @@ public class TicTacToeGame {
 		checkingForWinner();
 		checkCpuWin();
 		cornerCheck();
+		subsequentChoice();
 	}
 
 	/**
@@ -220,7 +221,7 @@ public class TicTacToeGame {
 		}
 		return user;
 	}
-	public static void cornerCheck() {
+	public static boolean cornerCheck() {
 		boolean result = checkingForWinner();
 		if(result == false) {
 			checkingForFreeSpace();
@@ -231,6 +232,20 @@ public class TicTacToeGame {
 			board[2][0]=letter;
 			checkingForFreeSpace();
 			board[2][2]=letter;
+			return true;
+		}
+		return false;
+	}
+	public static void subsequentChoice() {
+		boolean check = cornerCheck();
+		if(check == false) {
+			board[1][1] = letter;
+		}
+		if(board[1][1] == letter) {
+			checkingForFreeSpace();
+			board[1][0]=letter;
+			checkingForFreeSpace();
+			board[1][0]=letter;
 		}
 	}
 
