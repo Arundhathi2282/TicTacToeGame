@@ -15,6 +15,7 @@ public class TicTacToeGame {
 		checkCpuWin();
 		cornerCheck();
 		subsequentChoice();
+		isBoardFull();
 	}
 
 	/**
@@ -261,6 +262,16 @@ public class TicTacToeGame {
 		}
 		return false;
 	}
+	public static void isBoardFull() {
+		for(int i=0;i<board.length;i++) {
+			for(int j=0;j<board.length;j++) {
+				if(board[i][j]==letter) {
+					continue;
+				}else
+				board[i][j]=letter;
+			}
+		}
+	} 
 
 	/**
 	 * @return Checking if there is a winner or not
